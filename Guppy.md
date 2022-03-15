@@ -27,4 +27,6 @@ device = specifying GPU devices (0,1 are the GPUs installed in the system and gu
 trim_adpaters = Trim adpater sequences from the output fastq files
 ```
 > If your system has GPUs make sure to use them for basecalling as basecalling using only CPU is very very slow and make sure you have cuda installed.
+
+
 > Visit the following [link](https://gist.github.com/sirselim/2ebe2807112fae93809aa18f096dbb94) for more information about how to optimize guppy basecaller based on the computing power. 
