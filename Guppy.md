@@ -32,3 +32,8 @@ trim_adpaters = Trim adpater sequences from the output fastq files
 > Visit the following [link](https://gist.github.com/sirselim/2ebe2807112fae93809aa18f096dbb94) for more information about how to optimize guppy basecaller based on the computing power. 
 
 Basecalling will create two directories pass and fail. pass directory will contain reads having q-score greater than the cut-off value and will be used for downstream analysis. 
+
+# Guppy Barcoding Markdown
+
+```bash
+guppy_barcoder --barcode_kits SQK-RAB204 -i </path/to/the/input/basecalled/fastq/files> -s </path/for/the/output/demultiplexed/fastq/files> --recursive --compress_fastq --trim_adapters --trim_barcodes --trim_primers 
