@@ -22,3 +22,8 @@ grep -wsf accepted_headers combined.fastq -C 3 | sed '/^--/d' > accepted.fastq
 ```bash
 grep -vFf unblocked_read_ids.txt sequencing_summary.txt
 ```
+# Calculate per chromosome coverage
+```bash
+conda activate bbtools
+pileup.sh in=target.bam out=coverage.txt reference=reference.fasta
+```
