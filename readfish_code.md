@@ -14,3 +14,11 @@ sudo /home/user/miniconda3/envs/readfish/bin/readfish targets --device MN37483 -
 ```bash
 /var/lib/minknow/data
 ```
+# Select the accepted reads based on unblocked read ids
+```bash
+grep -wsf accepted_headers combined.fastq -C 3 | sed '/^--/d' > accepted.fastq
+```
+# Selection of accepted read ids
+```bash
+grep -vFf unblocked_read_ids.txt sequencing_summary.txt
+```
