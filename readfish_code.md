@@ -14,14 +14,16 @@ sudo /home/user/miniconda3/envs/readfish/bin/readfish targets --device MN37483 -
 ```bash
 /var/lib/minknow/data
 ```
-# Select the accepted reads based on unblocked read ids
-```bash
-grep -wsf accepted_headers combined.fastq -C 3 | sed '/^--/d' > accepted.fastq
-```
 # Selection of accepted read ids
 ```bash
 grep -vFf unblocked_read_ids.txt sequencing_summary.txt
 ```
+# Select the accepted reads based on unblocked read ids
+```bash
+cat accepted_ids | awk '{gsub("_","\\_",$0);$0="^@"$0".*?(\\n.*){3}"}1' | pcregrep -oM -f - combined.fastq > accepted.fastq
+```
+## Make sure that the accepted_ids file does not contain @ symbol and pcregrep should be installed either via sudo apt or conda.
+
 # Calculate per chromosome coverage
 ```bash
 conda activate bbtools
