@@ -16,7 +16,7 @@ sudo /home/user/miniconda3/envs/readfish/bin/readfish targets --device MN37483 -
 ```
 # Selection of accepted read ids
 ```bash
-grep -vFf unblocked_read_ids.txt sequencing_summary.txt > accepted_headers
+grep -vFf unblocked_read_ids.txt sequencing_summary.txt | awk '{print $3}' > accepted_headers
 ```
 # Select the accepted reads based on unblocked read ids
 ```bash
