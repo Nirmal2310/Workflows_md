@@ -32,3 +32,11 @@ pileup.sh in=target.bam out=coverage.txt reference=reference.fasta
 ```
 sudo /home/user/miniconda3/envs/readfish/bin/readfish targets --device MN37483 --experiment-name "chr depletion adaptive sampling" --toml human_chr_depletion.toml --log-file hs_rf_deplete.log --throttle 0.4 --paf-log hs_rf_deplete_paf.log --chunk-log hf_rf_deplete_chunk.log --workers 16
 ```
+# Simulating a minion run (through this you can playback two runs simultaneoulsy)
+```bash
+sudo service minknow stop
+sudo /opt/ont/minknow/bin/mk_manager_svc --simulated-minion-devices N (N represents the number of minion devices you want to simulate)
+Launch Minknow GUI and you will be seeing two devices.
+For Bulk fast5 playback, edit the minknow sequencing toml file with simulation tag under custom_scripts. Change the device name and flow cell ID accordingly in minknow and readfish command.
+```
+
