@@ -29,3 +29,6 @@ grep -wsf accepted_headers fastq_pass/combined.fastq -A 3 | sed '/^--$/d' > acce
 conda activate bbtools
 pileup.sh in=target.bam out=coverage.txt reference=reference.fasta
 ```
+```
+sudo /home/user/miniconda3/envs/readfish/bin/readfish targets --device MN37483 --experiment-name "chr depletion adaptive sampling" --toml human_chr_depletion.toml --log-file hs_rf_deplete.log --throttle 0.4 --paf-log hs_rf_deplete_paf.log --chunk-log hf_rf_deplete_chunk.log --workers 16
+```
