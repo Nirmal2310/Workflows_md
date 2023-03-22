@@ -42,5 +42,5 @@ guppy_barcoder --barcode_kits SQK-RAB204 -i </path/to/the/input/basecalled/fastq
 # Guppy Methylation Basecalling
 
 ```bash
-guppy_basecaller -c dna_r10.4.1_e8.2_260bps_modbases_5mc_cg_hac.cfg -i . -s . --align_ref reference.fasta --device cuda:0:100% --bam_out --barcode_kits SQK-NBD114.24 --trim_adapters --enable_trim_barcodes --trim_primers --compress_fastq --recursive 
+guppy_basecaller -c dna_r10.4.1_e8.2_260bps_modbases_5mc_cg_hac.cfg -i . -s . --align_ref reference.fasta --device cuda:0:100% --bam_out --barcode_kits SQK-NBD114.24 --trim_adapters --enable_trim_barcodes --trim_primers --compress_fastq --recursive --flowcell FLO-MIN114
 ```
