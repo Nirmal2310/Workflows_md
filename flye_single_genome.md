@@ -13,7 +13,7 @@ medaka_consensus -i C_auris_combined.fastq.gz -d draft.fasta -o C_auris_medaka_p
 ###### POLYPOLISH POLISHING (Using Short Read Sequencing Data)
 
 ```bash
-bwa index draft.fasta
+bwa index consensus.fasta
 bwa mem -t 16 -a draft.fasta reads_1.fastq.gz > alignments_1.sam
 bwa mem -t 16 -a draft.fasta reads_2.fastq.gz > alignments_2.sam
 polypolish_insert_filter.py --in1 alignments_1.sam --in2 alignments_2.sam --out1 filtered_1.sam --out2 filtered_2.sam
