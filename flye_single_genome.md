@@ -23,3 +23,9 @@ polypolish draft.fasta filtered_1.sam filtered_2.sam > polished.fasta
 ```bash
 polca.sh -a polished.fasta -r 'polishing _reads1.fastq polishing_reads2.fastq' -t 16 -m 160G
 ```
+###### CLAIR# Variant Calling (For Haploid Organism, in this case Candida auris)
+```bash
+cd barcode01
+docker run -v $PWD:$PWD --cpus 16 -w $PWD --rm hkubal/clair3:v1.0.0 run_clair3.sh --bam_fn="$PWD/barcode04_sorted.bam" --ref_fn="$PWD/C_auris_reference_GCF003013715.fasta" --threads="16"  --platform="ont" --model_path="$PWD/r1041_e82_260bps_sup_g632" --output="$PWD/C_auris_barcode04_clair3_variant_calling" --ctg_name="NC_072812.1,NC_072813.1,NC_072814.1,NC_072815.1,NC_072816.1,NC_072817.1,NC_072818.1" --no_phasing_for_fa --include_all_ctgs --haploid_precise
+# Please Note that the model files, bam file and the reference file should be in the same folder. Also please make a index file of the reference before running clair3
+```
