@@ -34,3 +34,11 @@ docker run -v $PWD:$PWD --cpus 16 -w $PWD --rm hkubal/clair3:v1.0.0 run_clair3.s
 gatk GenotypeGVCFs -R C_auris_reference_GCF003013715.fasta -V C_auris_barcode01_variants.vcf.gz -V C_auris_barcode02_variants.vcf.gz ... -O C_auris_joint_variants.vcf.gz
 gatk SelectVariants -V C_auris_joint_variants.vcf.gz -select-type SNP -O C_auris_joint_variants_snps.vcf.gz
 ```
+##### CONVERTING TO PHYLIP FORMAT
+```bash
+vcf2phylip.py -i C_auris_joint_variants_snps.vcf.gz -o C_auris_joint_variants.phy
+```
+##### MAKING PHYLOGENETIC TREE USING RaXML
+```bash
+raxmlHPC -s C_auris_joint_variants.phy -m GTRGAMMA -n C_auris_joint_variants.tree
+```
