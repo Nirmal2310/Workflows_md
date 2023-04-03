@@ -29,3 +29,8 @@ cd barcode01
 docker run -v $PWD:$PWD --cpus 16 -w $PWD --rm hkubal/clair3:v1.0.0 run_clair3.sh --bam_fn="$PWD/barcode04_sorted.bam" --ref_fn="$PWD/C_auris_reference_GCF003013715.fasta" --threads="16"  --platform="ont" --model_path="$PWD/r1041_e82_260bps_sup_g632" --output="$PWD/C_auris_barcode04_clair3_variant_calling" --ctg_name="NC_072812.1,NC_072813.1,NC_072814.1,NC_072815.1,NC_072816.1,NC_072817.1,NC_072818.1" --no_phasing_for_fa --include_all_ctgs --haploid_precise --gvcf
 # Please Note that the model files, bam file and the reference file should be in the same folder. Also please make a index file of the reference before running clair3
 ```
+##### JOINT VARIANT CALLING (FOR PHYLOGENETIC TREE)
+```bash
+gatk GenotypeGVCFs -R C_auris_reference_GCF003013715.fasta -V C_auris_barcode01_variants.vcf.gz -V C_auris_barcode02_variants.vcf.gz ... -O C_auris_joint_variants.vcf.gz
+gatk SelectVariants -V C_auris_joint_variants.vcf.gz -select-type SNP -O C_auris_joint_variants_snps.vcf.gz
+```
