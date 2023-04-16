@@ -1,7 +1,7 @@
 ##### This markdown file for running FLYE Assembler for Single Isolate (In this case C.auris)
 ```bash
 module load codes/flye-2.9
-flye --nano-raw C_auris_combined.fastq.gz --genome-size 12.5m -o C_auris_flye_assembly -t 16 -i 4
+flye --nano-raw C_auris_combined.fastq.gz --genome-size 12.5m -o C_auris_flye_assembly -t 16 -i 4 --no-alt-contigs
 ```
 
 ###### MEDAKA POLISHING (Using Long Read Sequencing Data)
