@@ -1,17 +1,21 @@
 ##### This markdown file for running FLYE Assembler for Single Isolate (In this case C.auris)
+###### Error Correction of Nanopore Reads using Illumina Sequencing Data
 ```bash
-module load codes/flye-2.9
-flye --nano-raw C_auris_combined.fastq.gz --genome-size 12.5m -o C_auris_flye_assembly -t 16 -i 4 --no-alt-contigs
+zcat sample_combined.fastq.gz | awk 'NR%4==1||NR%4==2' | tr "@" ">" > sample_combined.fasta
+mkdir temp
+gunzip -c sample_?.fastq.gz | awk "NR % 4 == 2" | sort -T ./temp | tr NT TN | ropebwt2 -LR | tr NT TN | fmlrc-convert sample_msbwt.npy
+fmlrc -p 16 sample_msbwt.npy sample_combined.fasta sample_combined_corrected.fasta
+canu -trim -p sample_corrected -d sample_corrected_trimming genomeSize=12000000 -corrected -nanopore sample_combine_corrected.fasta useGrid=false
+reformat.sh in=sample_corrected.trimmedReads.fasta.gz out=sample_corrected.trimmedReads_5K.fasta.gz minLength=5000
+```bash
+conda activate flye
+flye --nano-corr sample_corrected.trimmedReads_5K.fasta.gz --genome-size 12000000 -o C_auris_sample_flye_assembly -t 16 -i 4 --no-alt-contigs
 ```
-
 ###### MEDAKA POLISHING (Using Long Read Sequencing Data)
-
 ```bash
 medaka_consensus -i C_auris_combined.fastq.gz -d draft.fasta -o C_auris_medaka_polish -t 32 -m r1041_e82_260bps_sup_g632
 ```
-
 ###### POLYPOLISH POLISHING (Using Short Read Sequencing Data)
-
 ```bash
 bwa index consensus.fasta
 bwa mem -t 16 -a draft.fasta reads_1.fastq.gz > alignments_1.sam
