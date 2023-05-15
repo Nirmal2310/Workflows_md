@@ -7,7 +7,6 @@ gunzip -c sample_?.fastq.gz | awk "NR % 4 == 2" | sort -T ./temp | tr NT TN | ro
 fmlrc -p 16 sample_msbwt.npy sample_combined.fasta sample_combined_corrected.fasta
 canu -trim -p sample_corrected -d sample_corrected_trimming genomeSize=12000000 -corrected -nanopore sample_combine_corrected.fasta useGrid=false
 reformat.sh in=sample_corrected.trimmedReads.fasta.gz out=sample_corrected.trimmedReads_5K.fasta.gz minLength=5000
-```bash
 conda activate flye
 flye --nano-corr sample_corrected.trimmedReads_5K.fasta.gz --genome-size 12000000 -o C_auris_sample_flye_assembly -t 16 -i 4 --no-alt-contigs
 ```
