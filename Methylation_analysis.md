@@ -47,3 +47,9 @@ set on the command line or computed from the data (usually filtering out the low
 * N<sub>nocall</sub> - Number of reads aligned to this reference position, with the correct canonical base, but without a base
 modification call. This can happen, for example, if the model requires a CpG dinucleotide and the read has a
 CG->CH substitution such that no modification call was produced by the basecaller.
+
+#### Filtering BED File:
+This command will filter the sites that has atleast 10X sequencing depth and the methylated sites frequency is 50%.
+```bash
+awk 'BEGIN{FS="\t";OFS="\t"}{if($10>=10 && $11 >=0.5}' sample.bed > sample_filtered.bed
+```
