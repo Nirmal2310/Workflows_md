@@ -51,5 +51,6 @@ CG->CH substitution such that no modification call was produced by the basecalle
 #### Filtering BED File:
 This command will filter the sites that has atleast 10X sequencing depth and the methylated sites frequency is 50%.
 ```bash
+sed -i 's/ /\t/g' sample.bed
 awk 'BEGIN{FS="\t";OFS="\t"}{if($10>=10 && $11 >=0.5}' sample.bed > sample_filtered.bed
 ```
