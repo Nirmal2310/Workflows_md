@@ -121,11 +121,17 @@ e) Download and Install ProtHint
 tar -xvf ProtHint-2.6.0.tar.gz
 export PATH="/home/nirmal/tools/ProtHint/bin/:$PATH"
 ```
-f) Export All Paths to Bashrc
+f) Download and Install Other Dependencies
+```bash
+git clone https://github.com/Gaius-Augustus/TSEBRA
+conda install -c bioconda cdbtools -y
+```
+g) Export All Paths to Bashrc
 ```bash
 export PATH="/home/nirmal/tools/BRAKER-3.0.3/scripts/:$PATH"
 export PATH="/home/nirmal/tools/GeneMark-EX/:$PATH"
 export PATH="/home/nirmal/tools/Augustus/bin/:/home/nirmal/tools/Augustus/scripts/:$PATH"
 export AUGUSTUS_CONFIG_PATH=/home/nirmal/tools/Augustus/config/
 export PATH="/home/nirmal/tools/ProtHint-2.6.0/bin/:$PATH"
+export PATH="/home/nirmal/tools/TSEBRA/bin/:$PATH"
 ```
