@@ -122,3 +122,12 @@ ifeq ($(shell uname -s), Darwin)
 endif
 ```
 #### Note: The include path and library path is dependent on where your miniconda/anaconda is installed. Please edit it accordingly.
+
+e)
+
+Download and Install ProtHint
+```bash
+ wget https://github.com/gatech-genemark/ProtHint/releases/download/v2.6.0/ProtHint-2.6.0.tar.gz
+tar -xvf ProtHint-2.6.0.tar.gz
+export PATH="/home/nirmal/tools/ProtHint/bin/:$PATH"
+```
