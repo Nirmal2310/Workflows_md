@@ -125,13 +125,20 @@ f) Download and Install Other Dependencies
 ```bash
 git clone https://github.com/Gaius-Augustus/TSEBRA
 conda install -c bioconda cdbtools -y
+pip install biopython
 ```
 g) Export All Paths to Bashrc
 ```bash
 export PATH="/home/nirmal/tools/BRAKER-3.0.3/scripts/:$PATH"
 export PATH="/home/nirmal/tools/GeneMark-EX/:$PATH"
+export GENEMARK_PATH="/home/nirmal/tools/GeneMark-ETP/bin/:$PATH"
 export PATH="/home/nirmal/tools/Augustus/bin/:/home/nirmal/tools/Augustus/scripts/:$PATH"
 export AUGUSTUS_CONFIG_PATH=/home/nirmal/tools/Augustus/config/
 export PATH="/home/nirmal/tools/ProtHint-2.6.0/bin/:$PATH"
 export PATH="/home/nirmal/tools/TSEBRA/bin/:$PATH"
+```
+#### Running BRAKER for Candida auris Genome
+```bash
+braker.pl --genome=C_auris_IITD_B11221_v1.fasta --prot_seq=Fungi.fa --rnaseq_sets_dirs=/nfs_master/nirmal/Nanopore/c_auris_methylation/pass/C_auris_annotation_data --rnaseq_sets_ids=SRR11511212,SRR13193644,SRR13193646,SRR18885077 --threads 16 --fungus
+# Make Sure the Fastq File is unzipped.
 ```
