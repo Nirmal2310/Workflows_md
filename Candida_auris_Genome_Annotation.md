@@ -10,6 +10,9 @@
 BRAKER provides multiple modes for the PCG predictions but it works best when both RNA-Seq Data and Protein Data is available.
 
 A) Installation:
+
+a)
+
 Create a new conda environment and install the dependencies of Braker
 ```bash
 conda create -n braker -y && conda activate braker
@@ -32,11 +35,15 @@ cpanm install YAML::XS
 cpanm install Data::Dumper
 cpanm install Thread::Queue
 ```
+b)
+
 Download GeneMark-ES/ET/EP from [here.](http://exon.gatech.edu/GeneMark/license_download.cgi) Now change the path of perl:
 ```bash
 perl change_path_in_perl_scripts.pl "/home/nirmal/new-cluster/miniconda/envs/braker/bin/perl"
 perl check_install.bash # To check the successful installation of GeneMark-ES
 ```
+c)
+
 Downlod and Install GeneMark-ETP:
 ```bash
 git clone https://github.com/gatech-genemark/GeneMark-ETP.git
@@ -49,6 +56,8 @@ conda install -c bioconda gffread -y
 conda install -c bioconda diamond -y
 conda install -c bioconda bamtools -y
 ```
+d)
+
 Download and Install Augustus:
 ```bash
 git clone https://github.com/Gaius-Augustus/Augustus.git
