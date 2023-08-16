@@ -11,9 +11,7 @@ BRAKER provides multiple modes for the PCG predictions but it works best when bo
 
 A) Installation:
 
-a)
-
-Create a new conda environment and install the dependencies of Braker
+a) Create a new conda environment and install the dependencies of Braker
 ```bash
 conda create -n braker -y && conda activate braker
 conda install -c bioconda perl=5.34.0 -y
@@ -35,16 +33,12 @@ cpanm install YAML::XS
 cpanm install Data::Dumper
 cpanm install Thread::Queue
 ```
-b)
-
-Download GeneMark-ES/ET/EP from [here.](http://exon.gatech.edu/GeneMark/license_download.cgi) Now change the path of perl:
+b) Download GeneMark-ES/ET/EP from [here.](http://exon.gatech.edu/GeneMark/license_download.cgi) Now change the path of perl:
 ```bash
 perl change_path_in_perl_scripts.pl "/home/nirmal/new-cluster/miniconda/envs/braker/bin/perl"
 perl check_install.bash # To check the successful installation of GeneMark-ES
 ```
-c)
-
-Downlod and Install GeneMark-ETP:
+c) Downlod and Install GeneMark-ETP:
 ```bash
 git clone https://github.com/gatech-genemark/GeneMark-ETP.git
 conda install -c bioconda bedtools -y
@@ -56,9 +50,7 @@ conda install -c bioconda gffread -y
 conda install -c bioconda diamond -y
 conda install -c bioconda bamtools -y
 ```
-d)
-
-Download and Install Augustus:
+d) Download and Install Augustus:
 ```bash
 git clone https://github.com/Gaius-Augustus/Augustus.git
 cd Augustus
@@ -123,9 +115,7 @@ endif
 ```
 #### Note: The include path and library path is dependent on where your miniconda/anaconda is installed. Please edit it accordingly.
 
-e)
-
-Download and Install ProtHint
+e) Download and Install ProtHint
 ```bash
  wget https://github.com/gatech-genemark/ProtHint/releases/download/v2.6.0/ProtHint-2.6.0.tar.gz
 tar -xvf ProtHint-2.6.0.tar.gz
