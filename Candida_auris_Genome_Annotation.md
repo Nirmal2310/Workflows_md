@@ -149,13 +149,21 @@ conda install -c bioconda trnascan-se -y
 ### Step 3: Prediction of rRNA genes:
 RNAmmer can be downloaded from [here.](https://services.healthtech.dtu.dk/services/RNAmmer-1.2/)
 ```bash
+conda create -n rnammer -y && conda activate rnammer
+conda install -c conda-forge perl -y
+conda install -c biconda hmmer2 -y
+conda install -c bioconda perl-xml-simple -y
 mkdir RNAmmer && mv rnammer-1.2.Unix.tar.gz
 tar -xvf rnammer-1.2.Unix.tar.gz
 export PATH="/home/nirmal/tools/RNAmmer/:$PATH"
 ```
-EDIT THE 35th line of rnammer to: 
+EDIT THE 35th, 50 and 51st line of rnammer to: 
 ```bash
 my $INSTALL_PATH = "/home/nirmal/tools/RNAmmer";
+$HMMSEARCH_BINARY = "/home/nirmal/new-cluster/miniconda/envs/rnammer/bin/hmmsearch2";
+$PERL = "/home/nirmal/new-cluster/miniconda/envs/rnammer/bin/perl";
+```
+```bash
 rnammer -S euk -gff C_auris_rRNA.gff -multi -f C_auris_rRNA.fasta -h C_auris_rRNA -m tsu,ssu,lsu C_auris_genome.fasta
 ```
 ### Step 4: Identification of Protein Domains:
