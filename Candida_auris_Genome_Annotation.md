@@ -171,5 +171,6 @@ rnammer -S euk -gff C_auris_rRNA.gff -multi -f C_auris_rRNA.fasta -h C_auris_rRN
 ```bash
 conda activate eukaryote_annotation
 conda install -c bioconda hmmer -y
+hmmsearch --pfamtblout C_auris_pfam_hmmer_out.txt --cpu 16 -o hmmer_out /home/nirmal/bin/Pfam-A.hmm braker.aa
 ```
 
