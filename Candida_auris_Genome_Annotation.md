@@ -152,6 +152,7 @@ RNAmmer can be downloaded from [here.](https://services.healthtech.dtu.dk/servic
 mkdir RNAmmer && mv rnammer-1.2.Unix.tar.gz
 tar -xvf rnammer-1.2.Unix.tar.gz
 export PATH="/home/nirmal/tools/RNAmmer/:$PATH"
+rnammer -S euk -gff C_auris_rRNA.gff -multi -f C_auris_rRNA.fasta -h C_auris_rRNA -m tsu,ssu,lsu C_auris_genome.fasta
 ```
 ### Step 4: Identification of Protein Domains:
 ```bash
