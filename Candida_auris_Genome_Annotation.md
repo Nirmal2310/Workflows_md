@@ -145,6 +145,7 @@ braker.pl --genome=C_auris_IITD_B11221_v1.fasta --rnaseq_sets_dirs=/nfs_master/n
 ```bash
 conda create -n eukaryote_annotation -y && conda activate eukaryote_annotation
 conda install -c bioconda trnascan-se -y
+tRNAscan-se -o C_auris_tRNA.out -f C_auris_tRNA.ss -m C_auris_tRNA.stats C_auris_genome.fasta
 ```
 ### Step 3: Prediction of rRNA genes:
 RNAmmer can be downloaded from [here.](https://services.healthtech.dtu.dk/services/RNAmmer-1.2/)
