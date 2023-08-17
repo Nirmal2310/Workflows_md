@@ -142,3 +142,21 @@ export PATH="/home/nirmal/tools/TSEBRA/bin/:$PATH"
 braker.pl --genome=C_auris_IITD_B11221_v1.fasta --prot_seq=Fungi.fa --rnaseq_sets_dirs=/nfs_master/nirmal/Nanopore/c_auris_methylation/pass/C_auris_annotation_data --rnaseq_sets_ids=SRR11511212,SRR13193644,SRR13193646,SRR18885077 --threads 16 --fungus
 # Make Sure the Fastq File is unzipped.
 ```
+### Step 2: Prediction of tRNA genes:
+```bash
+conda create -n eukaryote_annotation -y && conda activate eukaryote_annotation
+conda install -c bioconda trnascan-se -y
+```
+### Step 3: Prediction of rRNA genes:
+RNAmmer can be downloaded from [here.](https://services.healthtech.dtu.dk/services/RNAmmer-1.2/)
+```bash
+mkdir RNAmmer && mv rnammer-1.2.Unix.tar.gz
+tar -xvf rnammer-1.2.Unix.tar.gz
+export PATH="/home/nirmal/tools/RNAmmer/:$PATH"
+```
+### Step 4: Identification of Protein Domains:
+```bash
+conda activate eukaryote_annotation
+conda install -c bioconda hmmer -y
+```
+
