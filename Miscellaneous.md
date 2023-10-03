@@ -11,4 +11,5 @@ else if($5=="1/2") {split($4,a,","); print $1,$2,$3,$4"\t"a[1]"/"a[2]}
 while read p; do awk -F "\t" '{print $6" "$7}' ${p}_insert_size_metrices.txt | sed -n '8p' >> insert_size_metrics; done < list
 awk 'BEGIN{FS=" ";OFS=" "}{print $1,$2,($1+3*$2), 2*(($1+3*$2))}' insert_size_metrics > temp
 paste -d " " list max_cov temp > numt_info
+while read p q r s t u; do dinumt.pl --mask_filename=refNumts.38.bed --input_filename=${p}_marked_duplicates.bam --reference=/nfs_master/nirmal/NUMT_testing/GRCh38_full_analysis_set_plus_decoy_hla.fa --include_mask --output_filename=${p}_dinumt.vcf --prefix=$p --len_cluster_include=`printf '%.*f\n' 0 $t`  --len_cluster_link=`printf '%.*f\n' 0 $u` --max_read_cov=`printf '%.*f\n' 0 $q` --output_support --support_filename=${p}_numt_support.sam --ucsc; done < "numt_info"
 ```
