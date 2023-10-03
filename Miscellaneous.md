@@ -9,5 +9,6 @@ else if($5=="1/2") {split($4,a,","); print $1,$2,$3,$4"\t"a[1]"/"a[2]}
 
 ```bash
 while read p; do awk -F "\t" '{print $6" "$7}' ${p}_insert_size_metrices.txt | sed -n '8p' >> insert_size_metrics; done < list
-paste -d " " list auto_cov insert_size_metrics > numt_info
+awk 'BEGIN{FS=" ";OFS=" "}{print $1,$2,($1+3*$2), 2*(($1+3*$2))}' insert_size_metrics > temp
+paste -d " " list max_cov temp > numt_info
 ```
