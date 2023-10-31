@@ -15,3 +15,7 @@ paste -d " " list max_cov temp > numt_info
 while read p q r s t u; do echo "dinumt.pl --mask_filename=/nfs_master/nirmal/GenomeIndiaProject/CBR/bamfiles/refNumts.38.bed --input_filename=${p}_marked_duplicates.bam --reference=/nfs_master/nirmal/NUMT_testing/GRCh38_full_analysis_set_plus_decoy_hla.fa --include_mask --output_filename=${p}_dinumt.vcf --prefix=$p --len_cluster_include=`printf '%.*f\n' 0 $t`  --len_cluster_link=`printf '%.*f\n' 0 $u` --max_read_cov=`printf '%.*f\n' 0 $q` --output_support --support_filename=${p}_numt_support.sam --ucsc" >> numt_run; done < "numt_info"
 cat numt_run | parallel -j 16 {}
 ```
+#### Filtering the DINUMT VCF
+```bash
+ grep -v "#" sample_dinumt.vcf | grep PASS | grep MLEN | awk 'BEGIN{FS="\t";OFS="\t"}{split($8,a,";"); print $1,$2,$4,a[6],a[7],a[5]}' | sed 's/MLEN=//g;s/MEND=//g;s/MSTART=//g' | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$2+$6,$3,$4,$5,$6}' > sample_filtered.txt
+```
