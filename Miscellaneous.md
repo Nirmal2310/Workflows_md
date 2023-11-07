@@ -16,5 +16,5 @@ while read p q r s t u; do echo "dinumt.pl --mask_filename=/nfs_master/nirmal/Ge
 ```
 #### Filtering the DINUMT VCF
 ```bash
- grep -v "#" sample_dinumt.vcf | grep PASS | grep MLEN | awk 'BEGIN{FS="\t";OFS="\t"}{split($8,a,";"); print $1,$2,$4,a[6],a[7],a[5]}' | sed 's/MLEN=//g;s/MEND=//g;s/MSTART=//g' | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$2+$6,$3,$4,$5,$6}' > sample_filtered.txt
+grep -v "#" sample_dinumt.vcf | grep "MLEN" | grep "PASS" | awk 'BEGIN{FS="\t";OFS="\t"}{split($8,a,";"); print $1,$2,$4,a[7],a[5],a[6]}' | sed 's/MLEN=//g;s/MEND=//g;s/MSTART=//g' | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$2+$6,$3,$4,$5,$6}' >  sample_final.txt
 ```
