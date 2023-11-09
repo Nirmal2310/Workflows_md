@@ -18,3 +18,7 @@ while read p q r s t u; do echo "dinumt.pl --mask_filename=/nfs_master/nirmal/Ge
 ```bash
 grep -v "#" sample_dinumt.vcf | grep "MLEN" | grep "PASS" | awk 'BEGIN{FS="\t";OFS="\t"}{split($8,a,";"); print $1,$2,$4,a[7],a[5],a[6]}' | sed 's/MLEN=//g;s/MEND=//g;s/MSTART=//g' | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$2+$6,$3,$4,$5,$6}' >  sample_final.txt
 ```
+#### Concatenating Coverage Data
+```bash
+while read p; do echo $p `cat ${p}_autocov.txt` `cat ${p}_mitocov.txt`; done < list | awk 'BEGIN{FS=" ";OFS="\t"}{print $1,$2,$3}' > sample_coverage.txt
+```
