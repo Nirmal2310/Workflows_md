@@ -17,7 +17,7 @@ while read p q r s t u; do echo "dinumt.pl --mask_filename=/nfs_master/nirmal/Ge
 #### Filtering the DINUMT VCF
 ```bash
 grep -v "#" sample_dinumt.vcf | grep "MLEN" | grep "PASS" | awk 'BEGIN{FS="\t";OFS="\t"}{split($8,a,";"); print $1,$2,a[3],a[7],a[5],a[6]}' | sed 's/MSTART=//g;s/MEND=//g;s/END=//g;s/MLEN=//g' | awk 'BEGIN{FS="\t";OFS="\t"}{if(($5-$4) > $6) print $1,$2,$3,$4,$5,"-"; else print $1,$2,$3,$4,$5,"+"}' > sample_final.txt
-grep -v "#" sample_dinumt.vcf | grep "MLEN" | grep "PASS" | awk 'BEGIN{FS="\t";OFS="\t"}{split($8,a,";"); print $1,$2,a[3],a[7],a[5],a[6]}' | sed 's/MSTART=//g;s/MEND=//g;s/END=//g;s/MLEN=//g' | awk 'BEGIN{FS="\t";OFS="\t"}{if(($5-$4) > $6) print $1,$2,$3+$6,$4,$5,"-",$6; else print $1,$2,$3+$6,$4,$5,"+",$6}' > sample_final.txt
+grep -v "#" sample_dinumt.vcf | grep "MLEN" | grep "PASS" | awk 'BEGIN{FS="\t";OFS="\t"}{split($8,a,";"); print $1,$2,a[7],a[5],a[6]}' | sed 's/MSTART=//g;s/MEND=//g;s/END=//g;s/MLEN=//g' | awk 'BEGIN{FS="\t";OFS="\t"}{if(($4-$3) > $5) print $1,$2,$2+$5,$3,$4,"-",$5; else print $1,$2,$2+$5,$3,$4,"+",$5}' > sample_final.txt
 ```
 #### Concatenating Coverage Data
 ```bash
