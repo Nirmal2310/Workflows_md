@@ -23,3 +23,10 @@ grep -v "#" sample_dinumt.vcf | grep "MLEN" | grep "PASS" | awk 'BEGIN{FS="\t";O
 ```bash
 while read p; do echo $p `cat ${p}_autocov.txt` `cat ${p}_mitocov.txt`; done < list | awk 'BEGIN{FS=" ";OFS="\t"}{print $1,$2,$3}' > sample_coverage.txt
 ```
+#### MToolBox From BAM File
+```bash
+samtools view -h sample_sorted.bam chrM | samtools sort -n | samtools fastq -@ 8 - -1 sample.R1.fastq.gz -2 sample.R2.fastq.gz -0 /dev/null -s /dev/null -n
+ls sample*fastq.gz | sed 's/ /\n/g' > sample.lst
+bash mtoolbox_config.sh -i sample
+MToolBox.sh -i sample.conf -m "-t 16" -a "-t 16" && rm -r sample*fastq.gz
+```
