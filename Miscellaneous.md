@@ -8,7 +8,7 @@ else if($5=="1/2") {split($4,a,","); print $1,$2,$3,$4"\t"a[1]"/"a[2]}
 #### DINUMT RUN
 
 ```bash
-while read p; do awk -F "\t" '{print $6" "$7}' ${p}_insert_size_metrics.txt | sed -n '8p' >> insert_size_metrics; done < list
+while read p; do awk -F "\t" '{print $6" "$7}' ${p}_insert_size_metrics.txt | sed -n '8p'; done < list > insert_size_metrics
 while read p; do awk '{print $1*5}' ${p}_autocov.txt; done < list > max_cov
 awk 'BEGIN{FS=" ";OFS=" "}{print $1,$2,($1+3*$2), 2*(($1+3*$2))}' insert_size_metrics > temp
 paste -d " " list max_cov temp > numt_info
