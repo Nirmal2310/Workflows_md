@@ -5,7 +5,7 @@ zcat sample_combined.fastq.gz | awk 'NR%4==1||NR%4==2' | tr "@" ">" > sample_com
 mkdir temp
 gunzip -c sample_?.fastq.gz | awk "NR % 4 == 2" | sort -T ./temp | tr NT TN | ropebwt2 -LR | tr NT TN | fmlrc-convert sample_msbwt.npy
 fmlrc -p 16 sample_msbwt.npy sample_combined.fasta sample_combined_corrected.fasta
-canu -trim -p sample_corrected -d sample_corrected_trimming genomeSize=12000000 -corrected -nanopore sample_combine_corrected.fasta useGrid=false
+canu -trim -p sample_corrected -d sample_corrected_trimming genomeSize=12000000 -corrected -nanopore sample_combine_corrected.fasta -useGrid=false
 reformat.sh in=sample_corrected.trimmedReads.fasta.gz out=sample_corrected.trimmedReads_5K.fasta.gz minLength=5000
 conda activate flye
 flye --nano-corr sample_corrected.trimmedReads_5K.fasta.gz --genome-size 12000000 -o C_auris_sample_flye_assembly -t 16 -i 4 --no-alt-contigs
