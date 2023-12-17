@@ -2,7 +2,7 @@
 ###### Error Correction of Nanopore Reads using Illumina Sequencing Data
 ```bash
 ## Removing Low quality reads from 250x2 paired-end reads ##
-bbduk.sh Xmx8g in=sample_1.fastq.gz in2=sample_2.fastq.gz ref=/home/nirmal/new-cluster/miniconda/envs/bbtools/bbtools/lib/resources/adapters.fa out=sample_1_trim.fastq.gz out2=sample_2_trim.fastq.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo threads=16 qtrim=r minlength=40 trimq=30
+bbduk.sh Xmx20g in=sample_1.fastq.gz in2=sample_2.fastq.gz ref=/home/nirmal/new-cluster/miniconda/envs/bbtools/bbtools/lib/resources/adapters.fa out=sample_1_trim.fastq.gz out2=sample_2_trim.fastq.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo threads=16 qtrim=r minlength=40 trimq=30
 zcat sample_combined.fastq.gz | awk 'NR%4==1||NR%4==2' | tr "@" ">" > sample_combined.fasta
 mkdir temp
 gunzip -c sample_?.fastq.gz | awk "NR % 4 == 2" | sort -T ./temp | tr NT TN | ropebwt2 -LR | tr NT TN | fmlrc-convert sample_msbwt.npy
