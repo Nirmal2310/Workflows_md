@@ -3,8 +3,15 @@
 ```bash
 ## Removing Low quality reads from 250x2 paired-end reads ##
 bbduk.sh Xmx20g in=sample_1.fastq.gz in2=sample_2.fastq.gz ref=/home/nirmal/new-cluster/miniconda/envs/bbtools/bbtools/lib/resources/adapters.fa out=sample_1_trim.fastq.gz out2=sample_2_trim.fastq.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo threads=16 qtrim=r minlength=40 trimq=30
+
+# Alternatively we can use Trimmomatic for trimming the adpater content and low quality reads
+
+trimmomatic PE -threads 16 sample_1.fastq.gz sample_2.fastq.gz sample_final_1.fastq.gz sample_trim_up_1.fastq.gz sample_final_2.fastq.gz sample_trim_up_2.fastq.gz ILLUMINACLIP:/home/nirmal/new-cluster/miniconda/envs/preprocessing/share/trimmomatic-0.39-2/adapters/TruSeq3-PE.fa:2:30:10:8:TRUE MINLEN:30 -phred33 && rm -r sample_trim_up*
+
 zcat sample_combined.fastq.gz | awk 'NR%4==1||NR%4==2' | tr "@" ">" > sample_combined.fasta
+
 mkdir temp
+
 gunzip -c sample_?.fastq.gz | awk "NR % 4 == 2" | sort -T ./temp | tr NT TN | ropebwt2 -LR | tr NT TN | fmlrc-convert sample_msbwt.npy
 fmlrc -p 16 sample_msbwt.npy sample_combined.fasta sample_combined_corrected.fasta
 canu -trim -p sample_corrected -d sample_corrected_trimming genomeSize=12000000 -corrected -nanopore sample_combine_corrected.fasta -useGrid=false
