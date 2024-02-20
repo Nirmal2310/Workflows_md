@@ -2,7 +2,7 @@
 ###### Error Correction of Nanopore Reads using Illumina Sequencing Data
 ```bash
 ## Removing Low quality reads from 250x2 paired-end reads ##
-bbduk.sh Xmx20g qin=33 in=sample_1.fastq.gz in2=sample_2.fastq.gz ref=/home/nirmal/new-cluster/miniconda/envs/bbtools/bbtools/lib/resources/adapters.fa out=sample_1_trim.fastq.gz out2=sample_2_trim.fastq.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo threads=16 qtrim=r minlength=40 mapq=30
+bbduk.sh Xmx20g qin=33 in=sample_1.fastq.gz in2=sample_2.fastq.gz ref=/home/nirmal/new-cluster/miniconda/envs/bbtools/bbtools/lib/resources/adapters.fa out=sample_1_trim.fastq.gz out2=sample_2_trim.fastq.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo threads=16 qtrim=rl minlength=40 mapq=30 -trimq=10
 
 # Alternatively we can use Trimmomatic for trimming the adpater content and low quality reads
 
