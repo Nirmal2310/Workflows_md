@@ -47,4 +47,8 @@ guppy_basecaller -c dna_r10.4.1_e8.2_260bps_modbases_5mc_cg_hac.cfg -i . -s . --
 # Dorado Methylation Basecalling
 ```bash
  nohup dorado basecaller ./dna_r10.4.1_e8.2_400bps_sup@v4.1.0 --kit-name SQK-NBD114-24 --modified-bases 5mCG_5hmCG  --trim all -x cuda:all --reference C_auris_B11220.fasta --min-qscore 10 pod5/ > BAM_Data/calls.bam &
+
+#### 6mA calling using rerio 4 kHz research model
+```
+dorado basecaller /mnt/wwn-0x5000c500e655a860/Nirmal_Data/rerio/dorado_models/res_dna_r10.4.1_e8.2_400bps_sup@v4.0.1 --kit-name SQK-NBD114-24 --modified-bases-models /mnt/wwn-0x5000c500e655a860/Nirmal_Data/rerio/dorado_models/res_dna_r10.4.1_e8.2_400bps_sup@v4.0.1_6mA@v2 --trim all -x cuda:all --reference C_auris_B11220.fasta --min-qscore 10 pod5/ > 6mA_Data/calls.bam
 ```
