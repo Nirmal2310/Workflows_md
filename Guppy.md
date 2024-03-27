@@ -44,3 +44,7 @@ guppy_barcoder --barcode_kits SQK-RAB204 -i </path/to/the/input/basecalled/fastq
 ```bash
 guppy_basecaller -c dna_r10.4.1_e8.2_260bps_modbases_5mc_cg_hac.cfg -i . -s . --align_ref reference.fasta --device cuda:0:100% --bam_out --barcode_kits SQK-NBD114-24 --trim_adapters --enable_trim_barcodes --trim_primers --compress_fastq --recursive
 ```
+# Dorado Methylation Basecalling
+```bash
+ nohup dorado basecaller ./dna_r10.4.1_e8.2_400bps_sup@v4.1.0 --kit-name SQK-NBD114-24 --modified-bases 5mCG_5hmCG  --trim all -x cuda:all --reference C_auris_B11220.fasta --min-qscore 10 pod5/ > BAM_Data/calls.bam &
+```
