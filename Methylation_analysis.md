@@ -52,5 +52,5 @@ CG->CH substitution such that no modification call was produced by the basecalle
 This command will filter the sites that has atleast 10X sequencing depth and at least 10 sites methylated.
 ```bash
 sed 's/ /\t/g' sample.bed > temp && mv temp sample.bed
-awk 'BEGIN{FS="\t";OFS="\t"}{if($10>=10 && $12 >=10}' sample.bed > sample_filtered.bed
+awk 'BEGIN{FS="\t";OFS="\t"}{if($10>=10 && $12 >=10) print $0}' sample.bed > sample_filtered.bed
 ```
