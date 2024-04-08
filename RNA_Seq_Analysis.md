@@ -22,7 +22,7 @@ samtools index -@ 6 sample_final.bam
 ```
 #### Checking for strandedness
 ```bash
-awk 'FNR == 3 {print}' *ReadsPerGene.out.tab > no_feature.txt
+awk 'FNR == 3 {print}' sampleReadsPerGene.out.tab > no_feature.txt
 awk '{ for (i=1; i<=NF; i++) s[i]+=$i } END { for (i=1; i<=NF; i++) printf "%s ", s[i] }' no_feature.txt > sum.txt
 awk '{if ($3/$4 < 0.4) print "forward"; else if ($4/$3 < 0.4) print "reverse"; else print "unstranded" }' sums.txt > strand.txt
 ```
