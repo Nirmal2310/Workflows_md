@@ -12,7 +12,7 @@ STAR --runThreadN 30 --runMode genomeGenerate --genomeDir GenomeDir/star_index -
 ```
 #### Mapping to the Reference Genome using STAR
 ```bash
-STAR --genomeDir GenomeDir/star_index --readFilesIn sample_final_1.fastq.gz sample_final_2.fastq.gz --runThreadN 12 --quantMode GeneCounts --outSAMtype BAM SortedByCoordinate --outFileNamePrefix sample --twopassMode Basic --outSAMstrandField intronMotif --readFilesCommand zcat
+STAR --genomeDir GenomeDir/star_index --readFilesIn sample_final_1.fastq.gz sample_final_2.fastq.gz --runThreadN 12 --quantMode GeneCounts --outSAMtype BAM --outFileNamePrefix sample --twopassMode Basic --outSAMstrandField intronMotif --readFilesCommand zcat
 ```
 #### Remove Optical and PCR Duplicated
 ```bash
