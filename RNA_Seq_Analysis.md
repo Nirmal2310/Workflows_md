@@ -8,9 +8,24 @@ ribodetector_cpu -t 8 -i sample_trim_1.fastq.gz sample_trim_2.fastq.gz -l 150 -e
 ```
 #### Indexing Reference Genome using STAR
 ```bash
-STAR --runThreadN 30 --runMode genomeGenerate --genomeDir GenomeDir/star_index --genomeFastaFiles --sjdbGTFfile --sjdbOverhang
+STAR --runThreadN 30 --runMode genomeGenerate --genomeDir GenomeDir/star_index --genomeFastaFiles GenomeDir/GCF_003013715.1_ASM301371v2_genomic.fna --sjdbGTFfile GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf --sjdbOverhang 149 # sjdbOverhang will be equal to mean read length -1
 ```
 #### Mapping to the Reference Genome using STAR
 ```bash
 STAR --genomeDir GenomeDir/star_index --readFilesIn sample_final_1.fastq.gz sample_final_2.fastq.gz --runThreadN 12 --quantMode GeneCounts --outSAMtype BAM SortedByCoordinate --outFileNamePrefix sample --twopassMode Basic --outSAMstrandField intronMotif --readFilesCommand zcat
+```
+#### Remove Optical and PCR Duplicated
+```bash
+gatk MarkDuplicates --java-options -Xmx80G -I sample.Aligned.sortedByCoord.out.bam -O sample_final.bam -M sample_md.txt --REMOVE_DUPLICATES true --TMP_DIR $PWD
+samtools index -@ 6 sample_final.bam
+```
+#### Checking for strandedness
+```bash
+awk 'FNR == 3 {print}' *ReadsPerGene.out.tab > no_feature.txt
+awk '{ for (i=1; i<=NF; i++) s[i]+=$i } END { for (i=1; i<=NF; i++) printf "%s ", s[i] }' no_feature.txt > sum.txt
+awk '{if ($3/$4 < 0.4) print "forward"; else if ($4/$3 < 0.4) print "reverse"; else print "unstranded" }' sums.txt > strand.txt
+```
+#### Getting the Counts
+```bash
+
 ```
