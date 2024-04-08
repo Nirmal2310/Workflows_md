@@ -28,5 +28,10 @@ awk '{if ($3/$4 < 0.4) print "forward"; else if ($4/$3 < 0.4) print "reverse"; e
 ```
 #### Getting the Counts
 ```bash
-
+# Unstranded Data
+awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2}' sampleReadsPerGene.out.tab
+# Forward Stranded Data
+awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$4}' sampleReadsPerGene.out.tab
+# Reverse Stranded Data
+awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$3}' sampleReadsPerGene.out.tab
 ```
