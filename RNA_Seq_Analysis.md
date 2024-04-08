@@ -4,7 +4,7 @@ bbduk.sh Xmx20g in=sample_1.fastq.gz in2=sample_2.fastq.gz ref=/home/antpc/minic
 ```
 #### Remove rRNA Reads from Trimmed FastQ files
 ```bash
-ribodetector_cpu -t 8 -i sample_trim_1.fastq.gz sample_trim_2.fastq.gz -l 150 -e norrna --chunk_size 5000 -o sample_final_1.fastq.gz sample_final_2.fastq.gz -r sample_rRNA_1.fastq.gz sample_rRNA_2.fastq.gz
+ribodetector -t 20 -i sample_trim_1.fastq.gz sample_trim_2.fastq.gz -l 150 -m 50 -e norrna --chunk_size 256 -o sample_final_1.fastq.gz sample_final_2.fastq.gz -r sample_rRNA_1.fastq.gz sample_rRNA_2.fastq.gz
 ```
 #### Indexing Reference Genome using STAR
 ```bash
