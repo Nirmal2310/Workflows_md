@@ -1,6 +1,6 @@
 #### Trim Raw Sequencing Reads to remove Adapter Sequences and Low Quality Reads
 ```bash
-bbduk.sh -Xmx20g in=sample_1.fastq.gz in2=sample_2.fastq.gz ref=/home/antpc/miniconda/envs/bbtools/bbtools/lib/resources/adapters.fa out=sample_trim_1.fastq.gz out2=sample_trim_2.fastq.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo threads=8 qtrim=rl minlength=40 trimq=15 maq=25 ftl=15 forcetrimright2=10 overwrite=true
+bbduk.sh -Xmx20g in=sample_1.fastq.gz in2=sample_2.fastq.gz ref=/home/antpc/miniconda/envs/bbtools/bbtools/lib/resources/adapters.fa out=sample_trim_1.fastq.gz out2=sample_trim_2.fastq.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo threads=8 qtrim=rl minlength=40 trimq=15 maq=25 ftl=10 forcetrimright2=10 overwrite=true
 
 #### Please check the read length first. If it is less than 70 bp then the above command will trim 15 bp from left and 10 bp from right and over all the readlength will become less than 40 and hence will get discarded. So, to avoid that always check the read length before preprocessing.
 ```
