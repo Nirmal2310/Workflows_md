@@ -10,7 +10,7 @@ ribodetector -t 20 -i sample_trim_1.fastq.gz sample_trim_2.fastq.gz -l 150 -m 50
 ```
 #### Indexing Reference Genome using STAR
 ```bash
-STAR --runThreadN 30 --runMode genomeGenerate --genomeDir GenomeDir/star_index --genomeFastaFiles GenomeDir/GCF_003013715.1_ASM301371v2_genomic.fna --sjdbGTFfile GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf --sjdbOverhang 149 # sjdbOverhang will be equal to mean read length -1
+STAR --runThreadN 30 --runMode genomeGenerate --genomeDir GenomeDir/star_index_50bp --genomeFastaFiles GenomeDir/GCF_003013715.1_ASM301371v2_genomic.fna --sjdbGTFfile GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf --sjdbOverhang 49 --genomeSAindexNbases 10 # sjdbOverhang will be equal to mean read length -1
 ```
 #### Mapping to the Reference Genome using STAR
 ```bash
