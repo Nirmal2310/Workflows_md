@@ -39,8 +39,8 @@ awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$4}' sampleReadsPerGene.out.tab
 ```
 #### Getting the Counts After Marking Duplicates
 ```bash
-featureCounts -a GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf -o sample_counts.txt sample_final.bam -s 0 # Unstranded Data
-featureCounts -a GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf -o sample_counts.txt sample_final.bam -s 1 # Forward Stranded Data
-featureCounts -a GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf -o sample_counts.txt sample_final.bam -s 2 # reversely Stranded Data
+featureCounts -a GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf -o sample_counts.txt -p sample_final.bam -s 0 # Unstranded Data, -p is for paired-end data
+featureCounts -a GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf -o sample_counts.txt -p sample_final.bam -s 1 # Forward Stranded Data
+featureCounts -a GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf -o sample_counts.txt -p sample_final.bam -s 2 # reversely Stranded Data
 awk 'BEGIN{FS="\t";OFS="\t"}{if(NR>2) print $1,$7}' sample_counts.txt > sample_gene_counts.txt
 ```
