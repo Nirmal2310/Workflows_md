@@ -29,11 +29,11 @@ awk 'FNR == 3 {print}' sampleReadsPerGene.out.tab | awk '{ for (i=1; i<=NF; i++)
 #### Getting the Counts
 ```bash
 # Unstranded Data
-awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2}' sampleReadsPerGene.out.tab
+awk 'BEGIN{FS="\t";OFS="\t"}{if(NR>4) rint $1,$2}' sampleReadsPerGene.out.tab
 # Forward Stranded Data
-awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$3}' sampleReadsPerGene.out.tab
+awk 'BEGIN{FS="\t";OFS="\t"}{if(NR>4) print $1,$3}' sampleReadsPerGene.out.tab
 # Reverse Stranded Data
-awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$4}' sampleReadsPerGene.out.tab
+awk 'BEGIN{FS="\t";OFS="\t"}{if(NR>4) print $1,$4}' sampleReadsPerGene.out.tab
 ```
 #### Getting the Counts After Marking Duplicates
 ```bash
