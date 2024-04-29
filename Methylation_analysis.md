@@ -33,9 +33,8 @@ modkit summary sample.bam -t 16 > sample_modified_summary.txt # Summarize the mo
 
 * N<sub>mod</sub> - Number of calls passing filters that were classified as a residue with a specified base modification.
 * N<sub>canonical</sub> - Number of calls passing filters were classified as the canonical base rather than modified. The
-exact base must be inferred by the modification code. For example, if the modification code is `m` (5mC) then
-the canonical base is cytosine. If the modification code is `a`, the canonical base is adenosine.
-* N<sub>other mod</sub> - Number of calls passing filters that were classified as modified, but where the modification is different from the listed base (and the corresponding canonical base is equal). For example, for a given cytosine there may be 3 reads with
+exact base must be inferred by the modification code. For example, if the modification code is `m` (5mC), the canonical base is cytosine. If the modification code is `a`, the canonical base is adenosine.
+* N<sub>other mod</sub> - Number of calls passing filters that were classified as modified but where the modification is different from the listed base (and the corresponding canonical base is equal). For example, for a given cytosine, there may be 3 reads with
 `h` calls, 1 with a canonical call, and 2 with `m` calls. In the bedMethyl row for `h` N<sub>other_mod</sub> would be 2. In the
 `m` row N<sub>other_mod</sub> would be 3.
 * N<sub>valid_cov</sub> - the valid coverage. N<sub>valid_cov</sub> = N<sub>mod</sub> + N<sub>other_mod</sub> + N<sub>canonical</sub>, also used as the `score` in the bedMethyl
@@ -52,5 +51,5 @@ CG->CH substitution such that no modification call was produced by the basecalle
 This command will filter the sites that has atleast 10X sequencing depth and at least 10 sites methylated.
 ```bash
 sed 's/ /\t/g' sample.bed > temp && mv temp sample.bed
-awk 'BEGIN{FS="\t";OFS="\t"}{if($10>=10 && $12 >=10) print $0}' sample.bed > sample_filtered.bed
+awk 'BEGIN{FS="\t";OFS="\t"}{if($10>=10 && $12 >=10) print $1,$2,$3,$12,$10,$6,$11}' sample.bed | sortBed > sample_filtered.bed
 ```
