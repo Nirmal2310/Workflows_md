@@ -42,3 +42,17 @@ featureCounts -a GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf -o sample_cou
 featureCounts -a GenomeDir/GCF_003013715.1_ASM301371v2_genomic.gtf -o sample_counts.txt -p sample_final.bam -s 2 # reversely Stranded Data
 awk 'BEGIN{FS="\t";OFS="\t"}{if(NR>2) print $1,$7}' sample_counts.txt > sample_gene_counts.txt
 ```
+#### Mapping the Reads and Gene Quantification using Hisat2 and Stringtie
+```bash
+# Building the Reference Index using Hisat2
+hisat2-build -p 16 GCF_003013715.1_ASM301371v2_genomic.fna GCF_003013715.1_ASM301371v2_genomic.fna
+
+# Mapping the RNA-Seq reads using Hisat2 (Reverse Stranded)
+hisat2 -p 16 -x GCF_003013715.1_ASM301371v2_genomic.fna --rna-strandness RF -1 sample_final_1.fastq.gz -2 sample_final_2.fastq.gz | samtools sort -@ 6 -o sample_sorted.bam -
+
+# Mapping the RNA-Seq reads using Hisat2 (Forward Stranded. Default is Unstranded)
+hisat2 -p 16 -x GCF_003013715.1_ASM301371v2_genomic.fna --rna-strandness FR -1 sample_final_1.fastq.gz -2 sample_final_2.fastq.gz | samtools sort -@ 6 -o sample_sorted.bam -
+
+# Getting the Gene Estimation using Stringtie
+stringtie -e -G new.gtf -o ERR10905079_guided.out.gtf ERR10905079_sorted.bam -A ERR10905079_counts.txt --rf # Reverse Stranded
+stringtie -e -G new.gtf -o ERR10905079_guided.out.gtf ERR10905079_sorted.bam -A ERR10905079_counts.txt --fr # Forward Stranded
