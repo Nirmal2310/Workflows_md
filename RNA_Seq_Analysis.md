@@ -53,6 +53,9 @@ hisat2 -p 16 -x GCF_003013715.1_ASM301371v2_genomic.fna --rna-strandness RF -1 s
 # Mapping the RNA-Seq reads using Hisat2 (Forward Stranded. Default is Unstranded)
 hisat2 -p 16 -x GCF_003013715.1_ASM301371v2_genomic.fna --rna-strandness FR -1 sample_final_1.fastq.gz -2 sample_final_2.fastq.gz | samtools sort -@ 6 -o sample_sorted.bam -
 
+# Making the GTF file compatible for Stringtie
+grep -P '\btranscript_id\s+"[^"]+"' GCF_003013715.1_ASM301371v2_genomic.gtf  > new.gtf
+
 # Getting the Gene Estimation using Stringtie
 stringtie -e -G new.gtf -o ERR10905079_guided.out.gtf ERR10905079_sorted.bam -A ERR10905079_counts.txt --rf # Reverse Stranded
 stringtie -e -G new.gtf -o ERR10905079_guided.out.gtf ERR10905079_sorted.bam -A ERR10905079_counts.txt --fr # Forward Stranded
