@@ -36,5 +36,5 @@ cat biosample_id.txt | join-into-groups-of 10 | xargs -n 1 sh -c 'epost -db bios
 ```
 #### Removing Files with Zero NUMT Calls
 ```bash
-for x in "$(wc -l *min*5* | awk -F " " '{if($1==0) print $2}')"; do echo $x; done
+for x in "$(wc -l *min*5* | awk -F " " '{if($1==0) print $2}')"; do rm -r $x; done
 ```
