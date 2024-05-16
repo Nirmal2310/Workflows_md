@@ -48,8 +48,8 @@ modification call. This can happen, for example, if the model requires a CpG din
 CG->CH substitution such that no modification call was produced by the basecaller.
 
 #### Filtering BED File:
-This command will filter the sites that has atleast 10X sequencing depth and at least 10 sites methylated.
+This command will filter the sites that has at least 10 sites methylated and at least 50% of the total reads methylated.
 ```bash
 sed 's/ /\t/g' sample.bed > temp && mv temp sample.bed
-awk 'BEGIN{FS="\t";OFS="\t"}{if($11>=20 && $12 >=10) print $1,$2,$3,$12,$10,$6,$11}' sample.bed | sortBed > sample_filtered.bed
+awk 'BEGIN{FS="\t";OFS="\t"}{if($11>=50 && $12 >=10) print $1,$2,$3,$12,$10,$6,$11}' sample.bed | sortBed > sample_filtered.bed
 ```
