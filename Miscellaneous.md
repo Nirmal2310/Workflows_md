@@ -38,3 +38,11 @@ cat biosample_id.txt | join-into-groups-of 10 | xargs -n 1 sh -c 'epost -db bios
 ```bash
 for x in "$(wc -l *min*5* | awk -F " " '{if($1==0) print $2}')"; do rm -r $x; done
 ```
+#### Generating 10000 random 9-mers genome coordinates
+```bash
+bedtools random -l 9 -n 100000 -seed 1234 -g chr_size.txt
+# l is the length of the region
+# n is the total number of coordinates to be produced
+# seed is for producing reproducible result
+# g is the file containing size of the chromosomes
+```
