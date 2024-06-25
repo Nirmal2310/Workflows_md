@@ -52,3 +52,10 @@ guppy_basecaller -c dna_r10.4.1_e8.2_260bps_modbases_5mc_cg_hac.cfg -i . -s . --
 ```
 dorado basecaller /mnt/wwn-0x5000c500e655a860/Nirmal_Data/rerio/dorado_models/res_dna_r10.4.1_e8.2_400bps_sup@v4.0.1 --kit-name SQK-NBD114-24 --modified-bases-models /mnt/wwn-0x5000c500e655a860/Nirmal_Data/rerio/dorado_models/res_dna_r10.4.1_e8.2_400bps_sup@v4.0.1_6mA@v2 --trim all -x cuda:all --reference C_auris_B11220.fasta --min-qscore 10 pod5/ > 6mA_Data/calls.bam
 ```
+
+#### Launching Guppy Basecall Server From Command Line
+```bash
+ sudo ./guppy_basecall_server --log_path /var/log/guppy --config ../data/dna_r9.4.1_450bps_fast.cfg --num_callers 1 --cpu_threads_per_caller 2 --port /tmp/.guppy/5555 --ipc_threads 3 --device cuda:all
+
+# Guppy is currently running in CPU mode by default (25-06-2024). Hence we have to launch it in GPU mode to do adaptive sampling explicitly.
+```
