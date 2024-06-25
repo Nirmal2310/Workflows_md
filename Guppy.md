@@ -55,7 +55,7 @@ dorado basecaller /mnt/wwn-0x5000c500e655a860/Nirmal_Data/rerio/dorado_models/re
 
 #### Launching Guppy Basecall Server From Command Line
 ```bash
- /opt/ont/guppy/bin/guppy_basecall_server --log_path $PWD --config /opt/ont/guppy/data/dna_r9.4.1_450bps_fast.cfg --num_callers 1 --cpu_threads_per_caller 2 --port /tmp/.guppy/5555 --ipc_threads 3 --device cuda:all
+ /opt/ont/guppy/bin/guppy_basecall_server --log_path ~/log/ --config /opt/ont/guppy/data/dna_r9.4.1_450bps_fast.cfg --num_callers 1 --cpu_threads_per_caller 2 --port /tmp/.guppy/5555 --ipc_threads 3 --device cuda:all
 
 # Guppy is currently running in CPU mode by default (25-06-2024). Hence we have to launch it in GPU mode to do adaptive sampling explicitly.
 ```
