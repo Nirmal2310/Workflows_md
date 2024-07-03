@@ -4,8 +4,8 @@ samtools view -@ 8 -T reference.fasta -C -o sample.cram sample.bam
 ```
 #### Compression and Decompression of Illumina Fastq File using SPRING
 ```bash
-spring -c -i file_1.fastq.gz file_2.fastq.gz -o file.spring -t 16 -g  # (Compression)
-spring -d -i file.spring -o file_1.fastq.gz file_2.fastq.gz -g -t 16 # (Decompression)
+spring -c -i file.R1.fastq.gz file.R2.fastq.gz -o file.spring -t 16 -g  # (Compression)
+spring -d -i file.spring -o file.R1.fastq.gz file.R2.fastq.gz -g -t 16 # (Decompression)
 spring -c -i file.fastq.gz -o file.spring -t 16 -g # (Compression single-end)
 spring -d -i file.spring -o file.fastq.gz -g -t 16 # (Decompressiong single-end)
 ```
