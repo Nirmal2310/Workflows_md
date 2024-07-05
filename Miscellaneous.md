@@ -46,3 +46,9 @@ bedtools random -l 9 -n 100000 -seed 1234 -g chr_size.txt
 # seed is for producing reproducible result
 # g is the file containing size of the chromosomes
 ```
+
+#### Autokill a process after a specific time
+```bash
+# I am running Icarust simulator for 48 hours and I am using timeout command to kill the command after 48 hours
+timeout --foreground -k 48h 48h cargo run --release -- -s /DATA2/config_str.toml -v
+```
