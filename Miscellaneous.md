@@ -52,3 +52,11 @@ bedtools random -l 9 -n 100000 -seed 1234 -g chr_size.txt
 # I am running Icarust simulator for 48 hours and I am using timeout command to kill the command after 48 hours
 timeout --foreground -k 48h 48h cargo run --release -- -s /DATA2/config_str.toml -v
 ```
+#### Get the Download Link from the Accession Number using FFQ
+```bash
+while read id; do ffq --ftp $id | grep -Eo '"url": "[^"]*"' | grep -o '"[^"]*"$'; done < "accession_list" > ftp_link
+
+sed -i 's/"//g;s/^/wget -c /g' ftp_link
+
+cat ftp_link | parallel -j 2 {}
+```
