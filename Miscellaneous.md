@@ -60,3 +60,35 @@ sed -i 's/"//g;s/^/wget -c /g' ftp_link
 
 cat ftp_link | parallel -j 2 {}
 ```
+#### Get the Phred Score from Fastq File using bioawk (Bioawk is installed using conda)
+```bash
+zcat sample.fastq.gz |  bioawk -c fastx '{print meanqual($qual)}' > qual.txt
+```
+```r
+tmp <- read.table(file="qual.txt", header = FALSE)
+
+colnames(tmp) <- "Phred"
+
+tmp <- tmp %>%
+  mutate(Bin = cut(Phred, breaks = c(seq(1,max(Phred),1),max(Phred)), include.lowest = TRUE, right = TRUE, labels = as.character(c(seq(1,max(Phred),1))))) %>%
+  select(-Phred) %>%
+  group_by(Bin) %>% summarise(Counts = n())
+
+tmp %>% ggplot(aes(Bin,Counts)) +
+  geom_bar(stat = "identity", fill = "#00005E") +
+  theme_classic() +
+  xlab("Phred Score") +
+  ylab("Frequency") +
+  theme(
+    axis.title.x = element_text(size = 14, face = "bold", colour = "black"),
+    axis.title.y = element_text(size = 14, face = "bold", colour = "black"),
+    strip.text.x = element_text(size = 14, face = "bold", colour = "black"),
+    axis.text.y= element_text(size=14, face = "bold", colour = "black"),
+    axis.text.x= element_text(size=14, face = "bold", colour = "black"),
+    legend.title= element_text(colour="black",size=14, face = "bold"),
+    legend.text= element_text(colour="black", size=14, face = "bold"),
+    axis.line = element_line(colour = "black", linewidth = 0.5, linetype = "solid" ),
+    strip.background = element_blank(),
+    legend.position = "right"
+  )
+```
