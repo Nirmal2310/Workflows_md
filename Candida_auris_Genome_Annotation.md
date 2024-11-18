@@ -32,6 +32,7 @@ cpanm install threads
 cpanm install YAML::XS
 cpanm install Data::Dumper
 cpanm install Thread::Queue
+cpanm install Statistics::LineFit
 ```
 b) Download GeneMark-ES/ET/EP from [here.](http://exon.gatech.edu/GeneMark/license_download.cgi) Now change the path of perl:
 ```bash
