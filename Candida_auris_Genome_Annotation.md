@@ -58,7 +58,6 @@ cd Augustus
 conda install -c conda-forge lp_solve -y
 conda install -c conda-forge suitesparse -y
 conda install -c anaconda gsl -y
-make augustus
 ```
 Edit common.mk file in the Augustus directory
 ```bash
@@ -115,6 +114,11 @@ ifeq ($(shell uname -s), Darwin)
 endif
 ```
 #### Note: The include path and library path is dependent on where your miniconda/anaconda is installed. Please edit it accordingly.
+
+```bash
+make augustus
+```
+
 
 e) Download and Install ProtHint
 ```bash
