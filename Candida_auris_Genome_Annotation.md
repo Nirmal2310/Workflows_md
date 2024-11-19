@@ -76,7 +76,7 @@ ZIPINPUT = true
 # are not available
 #COMPGENEPRED = true
 
-MYSQL = false
+COMGENEPRED = false
 
 # set these paths to the correct locations if you have installed the corresponding packages in non-default locations:
 INCLUDE_PATH_ZLIB        := -I/home/nirmal/new-cluster/miniconda/envs/braker/include
