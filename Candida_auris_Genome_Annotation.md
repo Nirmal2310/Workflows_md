@@ -49,7 +49,7 @@ conda install -c bioconda samtools -y
 conda install -c bioconda stringtie -y
 conda install -c bioconda gffread -y
 conda install -c bioconda diamond -y
-conda install -c bioconda bamtools -y
+conda install -c bioconda bamtools==2.4.1 -y
 ```
 d) Download and Install Augustus:
 ```bash
