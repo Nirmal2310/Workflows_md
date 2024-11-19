@@ -156,7 +156,7 @@ RNAmmer can be downloaded from [here.](https://services.healthtech.dtu.dk/servic
 ```bash
 conda create -n rnammer -y && conda activate rnammer
 conda install -c conda-forge perl -y
-conda install -c biconda hmmer2 -y
+conda install bioconda::hmmer2 -y
 conda install -c bioconda perl-xml-simple -y
 mkdir RNAmmer && mv rnammer-1.2.Unix.tar.gz
 tar -xvf rnammer-1.2.Unix.tar.gz
