@@ -57,7 +57,6 @@ git clone https://github.com/Gaius-Augustus/Augustus.git
 cd Augustus
 conda install -c conda-forge lp_solve -y
 conda install -c conda-forge suitesparse -y
-conda install -c anaconda gsl -y
 ```
 Edit common.mk file in the Augustus directory
 ```bash
