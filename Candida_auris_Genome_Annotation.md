@@ -14,7 +14,8 @@ A) Installation:
 a) Create a new conda environment and install the dependencies of Braker
 ```bash
 conda create -n braker -y && conda activate braker
-conda install -c anaconda perl=5.34.0 -y
+conda install -c bioconda bamtools==2.4.1 -y
+conda install -c anaconda perl -y
 conda install -c conda-forge gcc -y
 curl -L https://cpanmin.us | perl - App::cpanminus
 cpanm install File::Spec::Functions
