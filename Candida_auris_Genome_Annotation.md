@@ -42,6 +42,7 @@ perl check_install.bash # To check the successful installation of GeneMark-ES
 c) Downlod and Install GeneMark-ETP:
 ```bash
 git clone https://github.com/gatech-genemark/GeneMark-ETP.git
+conda install -c bioconda bamtools==2.4.1 -y
 conda install -c bioconda bedtools -y
 conda install -c bioconda sra-tools -y
 conda install -c bioconda hisat2 -y
@@ -49,7 +50,6 @@ conda install -c bioconda samtools -y
 conda install -c bioconda stringtie -y
 conda install -c bioconda gffread -y
 conda install -c bioconda diamond -y
-conda install -c bioconda bamtools==2.4.1 -y
 ```
 d) Download and Install Augustus:
 ```bash
