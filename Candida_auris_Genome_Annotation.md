@@ -121,7 +121,7 @@ make augustus
 
 e) Download and Install ProtHint
 ```bash
- wget https://github.com/gatech-genemark/ProtHint/releases/download/v2.6.0/ProtHint-2.6.0.tar.gz
+wget https://github.com/gatech-genemark/ProtHint/releases/download/v2.6.0/ProtHint-2.6.0.tar.gz
 tar -xvf ProtHint-2.6.0.tar.gz
 export PATH="/home/nirmal/tools/ProtHint/bin/:$PATH"
 ```
